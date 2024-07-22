@@ -2,6 +2,7 @@ package modelo;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Optional;
 
 public class Cliente extends Persona implements ServicioCuentas, Comparable<Cliente>{
     private int numCliente;
@@ -152,25 +153,37 @@ public class Cliente extends Persona implements ServicioCuentas, Comparable<Clie
 
     @Override
     public void listarCuentas() {
-        System.out.println("=".repeat(50));
-        for (Cuenta c: cuentas
-        ) {
-            System.out.println(c);
-        }
-        System.out.println("=".repeat(50));
+//        System.out.println("=".repeat(50));
+//        for (Cuenta c: cuentas
+//        ) {
+//            System.out.println(c);
+//        }
+//        System.out.println("=".repeat(50));
 
+        cuentas.forEach((System.out::println));
     }
 
     @Override
     public Cuenta buscarCuenta(int numero) {
-        for (Cuenta cuenta: cuentas) {
-            if (cuenta.getNumero() == numero){
-                System.out.println("Cuenta encontrada con número: " + numero + " → " + cuenta);
-                return cuenta;
-            }
-        }
-        System.out.println("Cuenta con número: " + numero + " no encontrada");
-        return null;
+//        for (Cuenta cuenta: cuentas) {
+//            if (cuenta.getNumero() == numero){
+//                System.out.println("Cuenta encontrada con número: " + numero + " → " + cuenta);
+//                return cuenta;
+//            }
+//        }
+//        System.out.println("Cuenta con número: " + numero + " no encontrada");
+//        return null;
+
+        Optional<Cuenta> cuentaEncontrada = cuentas.stream()
+                .filter(cuenta -> cuenta.getNumero() == numero)
+                .findFirst();
+
+        cuentaEncontrada.ifPresentOrElse(
+                cuenta -> System.out.println("Cuenta encontrada con número: " + numero + " → " + cuenta),
+                () -> System.out.println("Cuenta con número: " + numero + " no encontrada")
+        );
+
+        return cuentaEncontrada.orElse(null);
     }
 
     @Override

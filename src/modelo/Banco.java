@@ -1,6 +1,6 @@
 package modelo;
 
-import java.util.ArrayList;
+import java.util.Optional;
 import java.util.TreeSet;
 
 public class Banco implements ServicioClientes{
@@ -104,14 +104,26 @@ public class Banco implements ServicioClientes{
 
     @Override
     public Cliente consultarCliente(int numero) {
-        for (Cliente cliente: clientes) {
-            if (cliente.getNumeroCliente() == numero){
-                System.out.println("Cliente encontrado con número: " + numero + " → " + cliente);
-                return cliente;
-            }
-        }
-        System.out.println("Cliente con número: " + numero + " no encontrado");
-        return null;
+//        for (Cliente cliente: clientes) {
+//            if (cliente.getNumeroCliente() == numero){
+//                System.out.println("Cliente encontrado con número: " + numero + " → " + cliente);
+//                return cliente;
+//            }
+//        }
+//        System.out.println("Cliente con número: " + numero + " no encontrado");
+//        return null;
+
+            Optional<Cliente> clienteEncontrado = clientes.stream()
+                    .filter(cliente -> cliente.getNumeroCliente() == numero)
+                    .findFirst();
+
+            clienteEncontrado.ifPresentOrElse(
+                    cliente -> System.out.println("Cliente encontrado con número: " + numero + " → " + cliente),
+                    () -> System.out.println("Cliente con número: " + numero + " no encontrado")
+            );
+
+            return clienteEncontrado.orElse(null);
+
     }
 
     @Override
@@ -121,28 +133,41 @@ public class Banco implements ServicioClientes{
 
     @Override
     public Cliente buscarClientePorRFC(String rfc) {
-        for (Cliente cliente: clientes) {
-            if (cliente.getRfc().equals(rfc)){
-                System.out.println("Cliente encontrado con rfc: " + rfc + " → " + cliente);
-                return cliente;
-            }
-        }
-        System.out.println("Cliente con rfc: " + rfc + " no encontrado");
-        return null;
+//        for (Cliente cliente: clientes) {
+//            if (cliente.getRfc().equals(rfc)){
+//                System.out.println("Cliente encontrado con rfc: " + rfc + " → " + cliente);
+//                return cliente;
+//            }
+//        }
+//        System.out.println("Cliente con rfc: " + rfc + " no encontrado");
+//        return null;
+
+        Optional<Cliente> clienteEncontrado = clientes.stream()
+                .filter(cliente -> cliente.getRfc().equals(rfc))
+                .findFirst();
+
+        clienteEncontrado.ifPresentOrElse(
+                cliente -> System.out.println("Cliente encontrado con RFC: " + rfc + " → " + cliente),
+                () -> System.out.println("Cliente con RFC: " + rfc + " no encontrado")
+        );
+
+        return clienteEncontrado.orElse(null);
     }
 
     @Override
     public void listarPorNumeroTelefono() {
-
+        clientes.stream()
+                .sorted((p1, p2) -> ((String)p1.getTelefono()).compareTo(p2.getTelefono()))
+                .forEach(System.out::println);
+        System.out.println("=".repeat(50));
     }
 
     @Override
     public void listarClientes() {
-        System.out.println("=".repeat(50));
-        for (Cliente c: clientes
-             ) {
-            System.out.println(c);
-        }
-        System.out.println("=".repeat(50));
+//        for (Cliente c: clientes
+//             ) {
+//            System.out.println(c);
+//        }
+        clientes.forEach((System.out::println));
     }
 }

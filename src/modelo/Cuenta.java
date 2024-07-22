@@ -1,6 +1,6 @@
 package modelo;
 
-public abstract class Cuenta {
+public abstract class Cuenta implements Comparable<Cuenta>{
 
     private int numero;
     private String fechaApertura;
@@ -67,5 +67,15 @@ public abstract class Cuenta {
                 ", saldo=" + saldo +
                 ", fechaCancelacion='" + fechaCancelacion + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Cuenta o) {
+        if(this.numero < o.numero){
+            return -1;
+        } else  if (this.numero > o.numero){
+            return +1;
+        }
+        return 0;
     }
 }
