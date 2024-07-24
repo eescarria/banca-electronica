@@ -1,11 +1,13 @@
 package modelo;
 
+import java.time.LocalDate;
+
 public class CuentaDeCheque extends Cuenta{
 
     private Double costoManejoMensual;
 
-    public CuentaDeCheque(int numero, String fechaApertura, double saldo, String fechaCancelacion) {
-        super(numero, fechaApertura, saldo, fechaCancelacion);
+    public CuentaDeCheque(int numero, LocalDate fechaApertura, double saldo) {
+        super(numero, fechaApertura, saldo);
         this.costoManejoMensual = definirCuota();
     }
 

@@ -1,11 +1,13 @@
 package modelo;
 
+import java.time.LocalDate;
+
 public class CuentaDeAhorro extends Cuenta{
 
     private Double tasaInteresMensual;
 
-    public CuentaDeAhorro(int numero, String fechaApertura, double saldo, String fechaCancelacion) {
-        super(numero, fechaApertura, saldo, fechaCancelacion);
+    public CuentaDeAhorro(int numero, LocalDate fechaApertura, double saldo) {
+        super(numero, fechaApertura, saldo);
         this.tasaInteresMensual = definirTasa();
     }
 

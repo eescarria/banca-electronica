@@ -1,15 +1,17 @@
 import modelo.*;
 
+import java.time.LocalDate;
+
 public class Main {
 
     public static void main(String[] args) {
         Banco banco = new Banco("Bancolombia","Avenida", 5, "Medellin", "Antioquia", 76000, "abc123", "12345678");
 
-        Cliente cliente1 = new Cliente("Pepe", "Ruiz","Carrera 69", 20, "Hacienda", "Valle", 7600, 30,1,"abc123","12345678","14-01-1990");
-        Cliente cliente2 = new Cliente("Estefania", "Escarria","Calle 6", 2, "Caney", "Valle", 7601, 34,2,"abc456","02468024","20-05-1992");
-        Cliente cliente3 = new Cliente("Juan", "Alvear","Calle 5", 30, "Limonar", "Valle", 7603, 37,3,"abc789","02468022","20-08-1987");
-        Cliente cliente4 = new Cliente("Pepe", "Perez","Calle 4", 20, "Lido", "Valle", 7621, 52,4,"abc012","02468020","20-04-1996");
-        Cliente cliente5 = new Cliente("Pepe", "Perez","Calle 4", 20, "Lido", "Valle", 7621, 52,4,"abc012","02468020","20-04-1996");
+        Cliente cliente1 = new Cliente("Pepe", "Ruiz","Carrera 69", 20, "Hacienda", "Valle", 7600, 30,1,"abc123","12345678", LocalDate.of(1990,1,14));
+        Cliente cliente2 = new Cliente("Estefania", "Escarria","Calle 6", 2, "Caney", "Valle", 7601, 34,2,"abc456","02468024",LocalDate.of(1992,5,20));
+        Cliente cliente3 = new Cliente("Juan", "Alvear","Calle 5", 30, "Limonar", "Valle", 7603, 37,3,"abc789","02468022",LocalDate.of(1987,8,20));
+        Cliente cliente4 = new Cliente("Pepe", "Perez","Calle 4", 20, "Lido", "Valle", 7621, 52,4,"abc012","02468020",LocalDate.of(1996,4,13));
+        Cliente cliente5 = new Cliente("Pepe", "Perez","Calle 4", 20, "Lido", "Valle", 7621, 52,4,"abc012","02468020",LocalDate.of(2000,12,10));
         //System.out.println(cliente);
 
         Persona persona1 = new Persona("Estefania", "Escarria", "Carrera 69", 20, "Hacienda", "Valle", 7600, 34);
@@ -44,8 +46,8 @@ public class Main {
         /// Ejemplo cuenta de ahorro
         System.out.println("=".repeat(100));
         System.out.println("Métodos agregar cuentas de ahorro: ");
-        CuentaDeAhorro cuentaDeAhorro1 = new CuentaDeAhorro(1,"01-07-2024",10000,"Activa");
-        CuentaDeAhorro cuentaDeAhorro2 = new CuentaDeAhorro(2,"01-07-2024",5000,"Activa");
+        CuentaDeAhorro cuentaDeAhorro1 = new CuentaDeAhorro(1,LocalDate.of(2024,7,1),10000);
+        CuentaDeAhorro cuentaDeAhorro2 = new CuentaDeAhorro(2,LocalDate.of(2024,7,1),5000);
         cliente2.agregarCuenta(cuentaDeAhorro1);
         cliente2.agregarCuenta(cuentaDeAhorro2);
 
@@ -69,8 +71,8 @@ public class Main {
         /// Ejemplo cuenta de cheque
         System.out.println("=".repeat(100));
         System.out.println("Métodos agregar cuentas de cheque: ");
-        CuentaDeCheque cuentaDeCheque1 = new CuentaDeCheque(1,"01-07-2024",15000,"Activa");
-        CuentaDeCheque cuentaDeCheque2 = new CuentaDeCheque(2,"01-07-2024",2000,"Activa");
+        CuentaDeCheque cuentaDeCheque1 = new CuentaDeCheque(1,LocalDate.of(2024,7,1),15000);
+        CuentaDeCheque cuentaDeCheque2 = new CuentaDeCheque(2,LocalDate.of(2024,7,1),2000);
 
         cliente3.agregarCuenta(cuentaDeCheque1);
         cliente3.agregarCuenta(cuentaDeCheque2);

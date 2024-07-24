@@ -1,5 +1,7 @@
 package modelo;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
@@ -9,9 +11,9 @@ public class Cliente extends Persona implements ServicioCuentas, Comparable<Clie
     private String rfc;
     private String telefono;
     private ArrayList<Cuenta> cuentas;
-    private String fechaNacimiento;
+    private LocalDate fechaNacimiento;
 
-    public Cliente(String nombre, String apellido, Domicilio domicilio, int edad, int numero, String rfc, String telefono, String fechaNacimiento) {
+    public Cliente(String nombre, String apellido, Domicilio domicilio, int edad, int numero, String rfc, String telefono, LocalDate fechaNacimiento) {
         super(nombre, apellido, domicilio, edad);
         this.numCliente = numero;
         this.rfc = rfc;
@@ -20,7 +22,7 @@ public class Cliente extends Persona implements ServicioCuentas, Comparable<Clie
         this.cuentas = new ArrayList<>();
     }
 
-    public Cliente(String nombre, String apellido, String calle, int numero, String colonia, String estado, int codigoPostal, int edad, int numCliente, String rfc, String telefono, String fechaNacimiento) {
+    public Cliente(String nombre, String apellido, String calle, int numero, String colonia, String estado, int codigoPostal, int edad, int numCliente, String rfc, String telefono, LocalDate fechaNacimiento) {
         super(nombre, apellido, calle, numero, colonia, estado, codigoPostal, edad);
         this.numCliente = numCliente;
         this.rfc = rfc;
@@ -62,11 +64,11 @@ public class Cliente extends Persona implements ServicioCuentas, Comparable<Clie
         this.cuentas = cuentas;
     }
 
-    public String getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(String fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -110,7 +112,7 @@ public class Cliente extends Persona implements ServicioCuentas, Comparable<Clie
         Cuenta cuentaBuscada = buscarCuenta(numero);
 
         if(cuentaBuscada != null){
-            cuentaBuscada.setFechaCancelacion("Cancelada");
+            cuentaBuscada.setFechaCancelacion(LocalDate.now());
             System.out.println("Se cancela la cuenta con número: " + numero);
             return true;
         }else {

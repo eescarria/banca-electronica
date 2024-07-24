@@ -1,17 +1,18 @@
 package modelo;
 
+import java.time.LocalDate;
+
 public abstract class Cuenta implements Comparable<Cuenta>{
 
     private int numero;
-    private String fechaApertura;
+    private LocalDate fechaApertura;
     private double saldo;
-    private String fechaCancelacion;
+    private LocalDate fechaCancelacion;
 
-    public Cuenta(int numero, String fechaApertura, double saldo, String fechaCancelacion) {
+    public Cuenta(int numero, LocalDate fechaApertura, double saldo) {
         this.numero = numero;
         this.fechaApertura = fechaApertura;
         this.saldo = saldo;
-        this.fechaCancelacion = fechaCancelacion;
     }
 
     public void abonar(Double cantidad){
@@ -35,11 +36,11 @@ public abstract class Cuenta implements Comparable<Cuenta>{
         this.numero = numero;
     }
 
-    public String getFechaApertura() {
+    public LocalDate getFechaApertura() {
         return fechaApertura;
     }
 
-    public void setFechaApertura(String fechaApertura) {
+    public void setFechaApertura(LocalDate fechaApertura) {
         this.fechaApertura = fechaApertura;
     }
 
@@ -51,11 +52,11 @@ public abstract class Cuenta implements Comparable<Cuenta>{
         this.saldo = saldo;
     }
 
-    public String getFechaCancelacion() {
+    public LocalDate getFechaCancelacion() {
         return fechaCancelacion;
     }
 
-    public void setFechaCancelacion(String fechaCancelacion) {
+    public void setFechaCancelacion(LocalDate fechaCancelacion) {
         this.fechaCancelacion = fechaCancelacion;
     }
 
